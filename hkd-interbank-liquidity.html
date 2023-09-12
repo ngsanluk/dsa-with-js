@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>HKD Interbank Liquidity</title>
+    <!-- Include the ECharts file you just downloaded -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+  </head>
+  <body>
+    <!-- Prepare a DOM with a defined width and height for ECharts -->
+    <div id="main" style="width: 800px; height: 400px"></div>
+    <script type="text/javascript">
+      // Initialize the echarts instance based on the prepared dom
+      var myChart = echarts.init(document.getElementById("main"));
+
+      weatherAPI =
+        "https://api.hkma.gov.hk/public/market-data-and-statistics/daily-monetary-statistics/daily-figures-interbank-liquidity";
+
+      fetch(weatherAPI)
+        .then((response) => {
+          return response.json();
+        })
+        .then((json) => {
+          // console.log("\n=== JSON Response ===");
+          // console.log(json);
+          records = json.result.records;
+          records.reverse();
+          console.log(records);
+
+          dates = records.map((item) => item.end_of_date);
+          console.log(dates);
+
+          hiborOvernight = records.map((item) => item.hibor_overnight);
+          console.log(hiborOvernight);
+
+          var option = {
+            title: {
+              text: "Hong Kong Dollar Interbank Liquidity (Recent 100-Day)",
+            },
+            tooltip: {},
+            legend: {
+              data: ["Hibor Overnight"],
+            },
+            xAxis: {
+              data: dates,
+            },
+            yAxis: {},
+            series: [
+              {
+                name: "",
+                type: "line",
+                data: hiborOvernight,
+              },
+            ],
+          };
+
+          // Display the chart using the configuration items and data just specified.
+          myChart.setOption(option);
+        });
+
+      // Specify the configuration items and data for the chart
+    </script>
+  </body>
+</html>
