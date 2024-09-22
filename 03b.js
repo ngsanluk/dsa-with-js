@@ -6,7 +6,7 @@ fetch(endpoint)
   })
   .then((json) => {
     // un-comment following statements
-    // one-group a time to experience retrieving json attributes/sub-attributes
+    // one-line a time to experience retrieving json attributes/sub-attributes
     //console.log(json);
     //console.log(json[0]); // retrieve the first user in the users list
     //console.log(json[0].username); // retrieve user name of the first user in the users list
