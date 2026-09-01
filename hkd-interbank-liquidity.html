@@ -13,10 +13,10 @@
       // Initialize the echarts instance based on the prepared dom
       var myChart = echarts.init(document.getElementById("main"));
 
-      weatherAPI =
+      apiURL =
         "https://api.hkma.gov.hk/public/market-data-and-statistics/daily-monetary-statistics/daily-figures-interbank-liquidity";
 
-      fetch(weatherAPI)
+      fetch(apiURL)
         .then((response) => {
           return response.json();
         })
